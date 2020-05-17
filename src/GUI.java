@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GUI {
     private JPanel mainWindow;
@@ -62,17 +64,31 @@ public class GUI {
         return levelCB;
     }
 
+    private void addButtonsActionListeners()
+    {
+        field0.addActionListener(new ButtonClick(field0));
+        field1.addActionListener(new ButtonClick(field1));
+        field2.addActionListener(new ButtonClick(field2));
+        field3.addActionListener(new ButtonClick(field3));
+        field4.addActionListener(new ButtonClick(field4));
+        field5.addActionListener(new ButtonClick(field5));
+        field6.addActionListener(new ButtonClick(field6));
+        field7.addActionListener(new ButtonClick(field7));
+        field8.addActionListener(new ButtonClick(field8));
+
+    }
+
     public GUI()
     {
+        GridLayout layout = new GridLayout(3,3,7,7);
+        ticTacToePanel.setLayout(layout);
+
+
+
         manager=new Manager(this);
         manager.setButtonsProperties();
         manager.setComboBoxValues();
-        field0.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
-        });
+        addButtonsActionListeners();
     }
 
 

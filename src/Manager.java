@@ -13,14 +13,23 @@ public class Manager {
     public void setButtonsProperties()
     {
         gui.getField0().setBackground(Color.white);
+        gui.getField0().setOpaque(true);
         gui.getField1().setBackground(Color.white);
+        gui.getField1().setOpaque(true);
         gui.getField2().setBackground(Color.white);
+        gui.getField2().setOpaque(true);
         gui.getField3().setBackground(Color.white);
+        gui.getField3().setOpaque(true);
         gui.getField4().setBackground(Color.white);
+        gui.getField4().setOpaque(true);
         gui.getField5().setBackground(Color.white);
+        gui.getField5().setOpaque(true);
         gui.getField6().setBackground(Color.white);
+        gui.getField6().setOpaque(true);
         gui.getField7().setBackground(Color.white);
+        gui.getField7().setOpaque(true);
         gui.getField8().setBackground(Color.white);
+        gui.getField8().setOpaque(true);
     }
 
     public void setComboBoxValues()
