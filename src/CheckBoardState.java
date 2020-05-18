@@ -20,6 +20,10 @@ public class CheckBoardState {
         return isGameFinished;
     }
 
+    public void setGameFinished(boolean gameFinished) {
+        isGameFinished = gameFinished;
+    }
+
     private void checkHorizontally(GameState gameState)
     {
         FieldState[][]board=gameState.getBoard();

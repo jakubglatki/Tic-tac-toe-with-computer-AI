@@ -102,6 +102,21 @@ public class Manager {
         this.setScoreTexts(gameState);
     }
 
+    public void resetBoard(GameState gameState)
+    {
+        FieldState[][] board= gameState.getBoard();
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                board[i][j]=FieldState.Empty;
+                gameState.setStartingPlayer();
+                JButton button=this.getField(i,j);
+                button.setIcon(null);
+            }
+        }
+    }
+
     private void setScoreTexts(GameState gameState)
     {
         String userScore= Integer.toString(gameState.getPlayerScore());
@@ -119,4 +134,6 @@ public class Manager {
     {
         return gui.getCheckBoardState();
     }
+
+
 }

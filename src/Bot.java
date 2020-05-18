@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Bot {
-    private static GameState gameState;
+    private GameState gameState;
     private static Manager manager;
 
     public Bot(GameState gameState, Manager manager)

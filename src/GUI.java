@@ -79,6 +79,11 @@ public class GUI {
     public void setComputerWinsValue(String value) {
         this.computerWinsValue.setText(value);
     }
+
+    public static void setGameState(GameState gameState) {
+        GUI.gameState = gameState;
+    }
+
     private void addButtonsActionListeners()
     {
         field0.addActionListener(new ButtonClick(field0, gameState, manager));
@@ -99,7 +104,6 @@ public class GUI {
 
     public GUI()
     {
-        gameState=new GameState(manager);
         GridLayout layout = new GridLayout(3,3,7,7);
         ticTacToePanel.setLayout(layout);
 
@@ -107,6 +111,7 @@ public class GUI {
 
         manager=new Manager(this);
         manager.setButtonsProperties();
+        gameState= new GameState(manager);
         manager.setComboBoxValues();
         addButtonsActionListeners();
     }

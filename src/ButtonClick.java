@@ -20,29 +20,59 @@ public class ButtonClick implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        try {
+
             //if field is empty we will change it to x, and bot will change his to o. Otherwise button is not clickable
             if(gameState.getFieldsState(button)==FieldState.Empty && manager.getCheckBoardState().isGameFinished()==false) {
-                Image img = ImageIO.read(getClass().getResource("resources/xIcon.png"));
-                setButtonsIcon(img, this.button);
-                this.setFieldToX();
-                manager.getCheckBoardState().checkIfGameShouldEnd(gameState);
-                if(manager.getCheckBoardState().isGameFinished()==true) {
-                    manager.finishedGame(gameState);
-                    return;
-                }
-                Bot bot = new Bot(gameState, manager);
-                bot.makeRandomMove();
-                manager.getCheckBoardState().checkIfGameShouldEnd(gameState);
-                if(manager.getCheckBoardState().isGameFinished()==true) {
-                    manager.finishedGame(gameState);
-                    return;
-                }
+                    this.buttonClickedWhenGameNotFinished();
             }
+            else if(manager.getCheckBoardState().isGameFinished()==true)
+            {
+                manager.resetBoard(gameState);
+                manager.getCheckBoardState().setGameFinished(false);
+            }
+    }
+
+    private void buttonClickedWhenGameNotFinished()
+    {
+            if(gameState.getStartingPlayer()==StartingPlayer.Computer) {
+                this.makeComputerMove();
+                gameState.setStartingPlayer(StartingPlayer.Player);
+            }
+            else {
+                this.makePlayerMove();
+            }
+    }
+
+    private void makeComputerMove()
+    {
+        Bot bot = new Bot(gameState, manager);
+        bot.makeRandomMove();
+    }
+
+    private void makePlayerMove()
+    {
+
+        try {
+            Image img = ImageIO.read(getClass().getResource("resources/xIcon.png"));
+            setButtonsIcon(img, this.button);
+            this.setFieldToX();
+            manager.getCheckBoardState().checkIfGameShouldEnd(gameState);
+            if (manager.getCheckBoardState().isGameFinished() == true) {
+                manager.finishedGame(gameState);
+                return;
+            }
+            this.makeComputerMove();
+            manager.getCheckBoardState().checkIfGameShouldEnd(gameState);
+            if (manager.getCheckBoardState().isGameFinished() == true) {
+                manager.finishedGame(gameState);
+                return;
+            }
+
         } catch (Exception ex) {
             System.out.println(ex);
         }
     }
+
 
     public void setButtonsIcon(Image img, JButton button)
     {

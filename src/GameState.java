@@ -61,14 +61,17 @@ public class GameState {
         return startingPlayer;
     }
 
-    private void setStartingPlayer() {
+    public void setStartingPlayer() {
         int random = (int) (Math.random() * 2);
 
         if (random == 1) {
             startingPlayer = StartingPlayer.Player;
         } else startingPlayer = StartingPlayer.Computer;
     }
-
+    public void setStartingPlayer(StartingPlayer player)
+    {
+        this.startingPlayer=player;
+    }
 
     //gives information if given field is Empty, O or X
     public FieldState getFieldsState(JButton button)
