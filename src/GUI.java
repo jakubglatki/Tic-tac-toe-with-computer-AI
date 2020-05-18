@@ -1,21 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class GUI {
     private JPanel mainWindow;
     private JButton field0;
-    private JButton field3;
-    private JButton field6;
-    private JButton field2;
-    private JButton field5;
-    private JButton field8;
     private JButton field1;
+    private JButton field2;
+    private JButton field3;
     private JButton field4;
+    private JButton field5;
+    private JButton field6;
     private JButton field7;
+    private JButton field8;
     private JPanel ticTacToePanel;
     private JPanel statisticPanel;
     private JComboBox levelCB;
@@ -23,67 +19,91 @@ public class GUI {
     private JLabel tiesValue;
     private JLabel computerWinsValue;
     private static Manager manager;
+    private static GameState gameState;
+    private static CheckBoardState checkBoardState;
 
     public JButton getField0() {
         return field0;
-    }
-
-    public JButton getField3() {
-        return field3;
-    }
-
-    public JButton getField6() {
-        return field6;
-    }
-
-    public JButton getField2() {
-        return field2;
-    }
-
-    public JButton getField5() {
-        return field5;
-    }
-
-    public JButton getField8() {
-        return field8;
     }
 
     public JButton getField1() {
         return field1;
     }
 
+    public JButton getField2() {
+        return field2;
+    }
+
+    public JButton getField3() {
+        return field3;
+    }
+
     public JButton getField4() {
         return field4;
+    }
+
+    public JButton getField5() {
+        return field5;
+    }
+
+    public JButton getField6() {
+        return field6;
     }
 
     public JButton getField7() {
         return field7;
     }
 
+    public JButton getField8() {
+        return field8;
+    }
+
     public JComboBox getLevelCB() {
         return levelCB;
     }
 
+    public static CheckBoardState getCheckBoardState() {
+        return checkBoardState;
+    }
+
+
+    public void setUserWinsValue(String value) {
+        this.userWinsValue.setText(value);
+    }
+
+
+    public void setTiesValue(String value) {
+        this.tiesValue.setText(value);
+    }
+
+    public void setComputerWinsValue(String value) {
+        this.computerWinsValue.setText(value);
+    }
     private void addButtonsActionListeners()
     {
-        field0.addActionListener(new ButtonClick(field0));
-        field1.addActionListener(new ButtonClick(field1));
-        field2.addActionListener(new ButtonClick(field2));
-        field3.addActionListener(new ButtonClick(field3));
-        field4.addActionListener(new ButtonClick(field4));
-        field5.addActionListener(new ButtonClick(field5));
-        field6.addActionListener(new ButtonClick(field6));
-        field7.addActionListener(new ButtonClick(field7));
-        field8.addActionListener(new ButtonClick(field8));
+        field0.addActionListener(new ButtonClick(field0, gameState, manager));
+        field6.addActionListener(new ButtonClick(field6, gameState, manager));
+        field3.addActionListener(new ButtonClick(field3, gameState, manager));
+        field1.addActionListener(new ButtonClick(field1, gameState, manager));
+        field7.addActionListener(new ButtonClick(field7, gameState, manager));
+        field4.addActionListener(new ButtonClick(field4, gameState, manager));
+        field2.addActionListener(new ButtonClick(field2, gameState, manager));
+        field8.addActionListener(new ButtonClick(field8, gameState, manager));
+        field5.addActionListener(new ButtonClick(field5, gameState, manager));
 
+    }
+
+    public static Manager getManager() {
+        return manager;
     }
 
     public GUI()
     {
+        gameState=new GameState(manager);
         GridLayout layout = new GridLayout(3,3,7,7);
         ticTacToePanel.setLayout(layout);
 
-
+        checkBoardState=new CheckBoardState();
 
         manager=new Manager(this);
         manager.setButtonsProperties();
