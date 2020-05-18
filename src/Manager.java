@@ -135,5 +135,13 @@ public class Manager {
         return gui.getCheckBoardState();
     }
 
+    public void setLevelFromComboBox(GameState gameState)
+    {
+        String strLevel=gui.getLevelCB().getSelectedItem().toString();
+        strLevel = strLevel.replaceAll("\\D+","");
+
+        int level = Integer.parseInt(strLevel);
+        gameState.setLevel(level);
+    }
 
 }

@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GUI {
     private JPanel mainWindow;
@@ -114,6 +116,7 @@ public class GUI {
         gameState= new GameState(manager);
         manager.setComboBoxValues();
         addButtonsActionListeners();
+        levelCB.addItemListener(new ChangeLevel(gameState, manager));
     }
 
 

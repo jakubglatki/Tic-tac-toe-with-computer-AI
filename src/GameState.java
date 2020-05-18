@@ -11,6 +11,7 @@ public class GameState {
     private static Manager manager;
 
     public GameState(Manager manager) {
+        this.level=1;
         this.manager = manager;
         this.board = new FieldState[3][3];
         FillBoard();
