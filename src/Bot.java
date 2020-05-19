@@ -27,6 +27,7 @@ public class Bot {
                     board[i][j]=FieldState.O;
 
                     //alpha equals -infinity, as we always want it to get bigger for successful
+                    //the same, but in other way goes for beta
                     int score=alphaBetaPuring(board, 0, false, Integer.MIN_VALUE, Integer.MAX_VALUE);
                     board[i][j]=FieldState.Empty;
                     if(score>bestScore)
@@ -83,7 +84,11 @@ public class Bot {
                         board[i][j] = FieldState.Empty;
 
                         bestScore=Math.max(score,bestScore);
+
                         alpha=Math.max(alpha, bestScore);
+
+                        //if beta is lesser than alpha we know that some boards states won't be checked, as they are worse anyway,
+                        //so they are pruned
                         if(beta<=alpha)
                             return bestScore;
                     }
@@ -109,6 +114,9 @@ public class Bot {
 
                         bestScore=Math.min(score,bestScore);
                         beta=Math.min(beta, bestScore);
+
+                        //if beta is lesser than alpha we know that some boards states won't be checked, as they are worse anyway,
+                        //so they are pruned
                         if(beta<=alpha)
                             return bestScore;
                     }

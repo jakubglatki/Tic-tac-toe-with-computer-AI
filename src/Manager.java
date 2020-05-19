@@ -65,6 +65,7 @@ public class Manager {
         gui.getLevelCB().addItem("Impossible (9)");
     }
 
+    //Button is returned according to it's place on board
     public JButton getField(int i, int j) {
 
         if (i == 0 && j == 0)
@@ -103,6 +104,7 @@ public class Manager {
         this.setScoreTexts(gameState);
     }
 
+    //after each game or changing level the board is cleaned
     public void resetBoard(GameState gameState)
     {
         FieldState[][] board= gameState.getBoard();

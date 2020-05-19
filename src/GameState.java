@@ -69,6 +69,7 @@ public class GameState {
             startingPlayer = StartingPlayer.Player;
         } else startingPlayer = StartingPlayer.Computer;
     }
+
     public void setStartingPlayer(StartingPlayer player)
     {
         this.startingPlayer=player;

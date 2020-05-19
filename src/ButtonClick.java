@@ -21,7 +21,7 @@ public class ButtonClick implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
-            //if field is empty we will change it to x, and bot will change his to o. Otherwise button is not clickable
+            //if field is empty we will change it to X, and bot will change his to O. Otherwise button is not clickable
             if(gameState.getFieldsState(button)==FieldState.Empty && manager.getCheckBoardState().isGameFinished()==false) {
                     this.buttonClickedWhenGameNotFinished();
             }
