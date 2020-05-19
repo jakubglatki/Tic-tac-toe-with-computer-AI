@@ -1,6 +1,7 @@
 public class CheckBoardState {
 
     private boolean isGameFinished=false;
+    private FieldState winner;
 
     public CheckBoardState()
     {
@@ -9,8 +10,12 @@ public class CheckBoardState {
     public void checkIfGameShouldEnd(GameState gameState)
     {
         this.checkHorizontally(gameState);
-        this.checkVertically(gameState);
-        this.checkDiagonally(gameState);
+
+        if(!isGameFinished)
+            this.checkVertically(gameState);
+
+        if(!isGameFinished)
+            this.checkDiagonally(gameState);
 
         if(!isGameFinished)
             this.checkIfAllFieldsAreTaken(gameState);
@@ -24,6 +29,15 @@ public class CheckBoardState {
         isGameFinished = gameFinished;
     }
 
+    public void setWinner(FieldState fieldState)
+    {
+        winner=fieldState;
+    }
+
+    public FieldState getWinner() {
+        return winner;
+    }
+
     private void checkHorizontally(GameState gameState)
     {
         FieldState[][]board=gameState.getBoard();
@@ -34,18 +48,20 @@ public class CheckBoardState {
             {
                 if (board[i][0]==FieldState.X)
                 {
-                    gameState.setPlayerScore(gameState.getPlayerScore()+1);
                     isGameFinished=true;
+                    setWinner(FieldState.X);
                     return;
                 }
                 else if(board[i][0]==FieldState.O)
                 {
-                    gameState.setComputerScore(gameState.getComputerScore()+1);
                     isGameFinished=true;
+                    setWinner(FieldState.O);
                     return;
                 }
             }
         }
+
+        isGameFinished=false;
     }
 
 
@@ -60,18 +76,19 @@ public class CheckBoardState {
             {
                 if (board[0][i]==FieldState.X)
                 {
-                    gameState.setPlayerScore(gameState.getPlayerScore()+1);
                     isGameFinished=true;
+                    setWinner(FieldState.X);
                     return;
                 }
                 else if(board[0][i]==FieldState.O)
                 {
-                    gameState.setComputerScore(gameState.getComputerScore()+1);
                     isGameFinished=true;
+                    setWinner(FieldState.O);
                     return;
                 }
             }
         }
+        isGameFinished=false;
     }
 
 
@@ -83,15 +100,15 @@ public class CheckBoardState {
         {
             if (board[0][0]==FieldState.X)
             {
-                gameState.setPlayerScore(gameState.getPlayerScore()+1);
                 isGameFinished=true;
+                setWinner(FieldState.X);
                 return;
             }
 
             else if(board[0][0]==FieldState.O)
             {
-                gameState.setComputerScore(gameState.getComputerScore()+1);
                 isGameFinished=true;
+                setWinner(FieldState.O);
                 return;
             }
         }
@@ -100,19 +117,20 @@ public class CheckBoardState {
         {
             if (board[1][1]==FieldState.X)
             {
-                gameState.setPlayerScore(gameState.getPlayerScore()+1);
                 isGameFinished=true;
+                setWinner(FieldState.X);
                 return;
             }
 
             else if(board[1][1]==FieldState.O)
             {
-                gameState.setComputerScore(gameState.getComputerScore()+1);
                 isGameFinished=true;
+                setWinner(FieldState.O);
                 return;
             }
         }
 
+        isGameFinished=false;
     }
 
     private void checkIfAllFieldsAreTaken(GameState gameState)
@@ -126,7 +144,7 @@ public class CheckBoardState {
                     return;
             }
         }
-        gameState.setTiesScore(gameState.getTiesScore()+1);
         isGameFinished=true;
+        setWinner(FieldState.Empty);
     }
 }

@@ -99,6 +99,7 @@ public class Manager {
 
     public void finishedGame(GameState gameState)
     {
+        this.setScoreValues(gameState);
         this.setScoreTexts(gameState);
     }
 
@@ -111,9 +112,25 @@ public class Manager {
             {
                 board[i][j]=FieldState.Empty;
                 gameState.setStartingPlayer();
+                getCheckBoardState().setWinner(null);
                 JButton button=this.getField(i,j);
                 button.setIcon(null);
             }
+        }
+    }
+
+    private void setScoreValues(GameState gameState)
+    {
+        if (getCheckBoardState().getWinner() == FieldState.X) {
+            gameState.setPlayerScore(gameState.getPlayerScore() + 1);
+        }
+        else if (getCheckBoardState().getWinner() == FieldState.O)
+        {
+            gameState.setComputerScore(gameState.getComputerScore() + 1);
+        }
+        else if (getCheckBoardState().getWinner() == FieldState.Empty)
+        {
+            gameState.setTiesScore(gameState.getTiesScore()+1);
         }
     }
 

@@ -46,7 +46,7 @@ public class ButtonClick implements ActionListener {
     private void makeComputerMove()
     {
         Bot bot = new Bot(gameState, manager);
-        bot.makeRandomMove();
+        bot.makeBestMove();
     }
 
     private void makePlayerMove()
